@@ -3,18 +3,9 @@
 A simple Zig library for secure password input from the terminal with customizable display options.
 
 ## Installation
-
-### Using Zig Package Manager
-
-Add this package to your `build.zig.zon`:
-
-```zig
-.dependencies = .{
-    .passprompt = .{
-        .url = "https://github.com/yourusername/passprompt/archive/main.tar.gz",
-        .hash = "...", // Will be filled automatically by `zig fetch`
-    },
-},
+Fetch this dependency by running the following command in your project:
+```
+zig fetch https://github.com/eltNEG/passprompt#master
 ```
 
 Then in your `build.zig`:
