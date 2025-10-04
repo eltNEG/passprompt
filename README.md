@@ -5,7 +5,7 @@ A simple Zig library for secure password input from the terminal with customizab
 ## Installation
 Fetch this dependency by running the following command in your project:
 ```
-zig fetch https://github.com/eltNEG/passprompt#master
+zig fetch --save git+https://github.com/eltNEG/passprompt#master
 ```
 
 Then in your `build.zig`:
@@ -22,9 +22,6 @@ exe.root_module.addImport("passprompt", passprompt_dep.module("passprompt"));
 ## Usage
 
 ```zig
-const std = @import("std");
-const passprompt = @import("passprompt");
-
 pub fn main() !void {
     var buffer: [256]u8 = undefined;
 
@@ -33,8 +30,9 @@ pub fn main() !void {
     const password = buffer[0..size];
 
     // Get password with no display (completely hidden)
-    const size2 = try passprompt.get(&buffer, "Enter secret: ", null);
-    const secret = buffer[0..size2];
+    var buffer2: [256]u8 = undefined;
+    const size2 = try passprompt.get(&buffer2, "Enter secret: ", null);
+    const secret = buffer2[0..size2];
 
     // Check if passwords match
     const match = std.mem.eql(u8, password, secret);
